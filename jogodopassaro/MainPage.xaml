@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="jogodopassaro.MainPage"
+             Shell.NavBarIsVisible="False">
+
+             <Grid>
+                <!--\ Img fundo -->
+
+                <Image Source "fundo png"
+                Verificaloptions="fill"
+                HorizontalOptions ="Fill"/>    
+
+                <!-- Img personagem -->
+
+                <Image Source ="bird.png"
+                HeightRequest="50"
+                WidthRequest="50"
+                HorizontalOptions="Start"
+                X:Name="AngryBirds"/>
+
+                
+
+
+
+
+
+
+
+
+
+             </Frame>
+             </Grid>
+</ContentPage>
