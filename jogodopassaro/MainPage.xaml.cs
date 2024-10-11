@@ -1,4 +1,7 @@
-﻿namespace jogodopassaro;
+﻿using CoreMedia;
+using UIKit;
+
+namespace jogodopassaro;
 
 public partial class MainPage : ContentPage
 {
@@ -16,7 +19,18 @@ public partial class MainPage : ContentPage
 	void AplicaGravidade()
 	{
 		bird.png.TranslationY+= gravidade;
-
+	}
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		Desenha();
+    }
+	Async tase Desenha()
+	{
+	Whice (!estaMorto)
+	}
+		Aplica Gravidade()
+		Await Task.Delay (TempoEntreFrames);
 	}
 
 }
