@@ -15,11 +15,11 @@
 
               <!-- Img personagem-->
 
-              <Image Source="bixo.png"
+              <Image Source="bird.png"
                      HeightRequest="50"
                      WidthRequest="50"
                      HorizontalOptions="Start"
-                     x:Name="mosca"/>
+                     x:Name="Passaro"/>
 
 
               <!-- Img postes-->
@@ -28,7 +28,7 @@
                      VerticalOptions="Start"
                      HorizontalOptions="End"
                      HeightRequest="400"
-                     x:Name="CanoCima"/>
+                     x:Name="estilingue"/>
 
               <!-- Img postes-->
 
@@ -36,7 +36,7 @@
                      VerticalOptions="End"
                      HorizontalOptions="End"
                      HeightRequest="400"
-                     x:Name="CanoBaixo"/>
+                     x:Name="estilinguein"/>
 
               <!-- Img do chão-->
 
@@ -44,7 +44,7 @@
                      VerticalOptions="End"
                      HeightRequest="100"
                      Aspect="Fill"
-                     x:Name="Imgchao"/>
+                     x:Name="chao"/>
               <!-- Frame game over-->
 
               <!-- Tela score-->

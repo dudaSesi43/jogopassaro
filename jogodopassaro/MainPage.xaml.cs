@@ -41,7 +41,7 @@ public partial class MainPage : ContentPage
   }
 	void AplicaPulo()
 	{
-		Passaro.TranslationY-=forcaPulo;
+		passaro.TranslationY-=forcaPulo;
 		tempoPulando++;
 		if (tempoPulando >= maxTempoPulando)
 		{
@@ -55,7 +55,7 @@ public partial class MainPage : ContentPage
 	}
 	void AplicaGravidade()
 	{
-		jogodopassaro.TranslationY += Gravidade;
+		passaro.TranslationY += Gravidade;
 	
 	}
 
@@ -69,25 +69,25 @@ public partial class MainPage : ContentPage
 	}
 	void GerenciaCanos()
 	{
-		estilingue.png.TranslationX -= velocidade;
-		estilingue.png.TranslationX -= velocidade;
+		estilingue.TranslationX -= velocidade;
+		estilingue.TranslationX -= velocidade;
 
-		if (imgCanoBaixo.TranslationX <- LarguraJanela)
+		if (estilinguein.TranslationX <- LarguraJanela)
 		{
-			imgCanoBaixo.TranslationX = 0;
-			imgCanoCima.TranslationX = 0;
+			estilingue.TranslationX = 0;
+			estilinguein.TranslationX = 0;
 			var alturaMax=-100;
-			var alturaMin=-imgCanoBaixo.HeightRequest;
-			imgCanoCima.TranslationY=Random.Shared.Next((int)alturaMin, (int)alturaMax);
-			imgCanoBaixo.TranslationY=imgCanoCima.TranslationY+AberturaMinima+imgCanoBaixo.HeightRequest;
+			var alturaMin=-estilinguein.HeightRequest;
+			estilingue.TranslationY=Random.Shared.Next((int)alturaMin, (int)alturaMax);
+			estilinguein.TranslationY=estilinguein.TranslationY+AberturaMinima+estilingue.HeightRequest;
 			score++;
-			LabelScore.Text="Canos: "+score.ToString("D3");
+			LabelScore.Text="estilingue: "+score.ToString("D3");
 		}
 	
 	}
 
 
-	void Ei(object s, TappedEventArgs e)
+	void OnGameOverCliked (object s, TappedEventArgs e)
 	{
 		GameOverFrame.IsVisible = false;
 		estaMorto = false;
@@ -96,10 +96,10 @@ public partial class MainPage : ContentPage
 	}
 	void Inicializar()
 	{
-		imgCanoCima.TranslationX=-LarguraJanela;
-		imgCanoCima.TranslationY=-LarguraJanela;
-		imgCanoBaixo.TranslationX=-LarguraJanela;
-		imgCanoBaixo.TranslationY=-LarguraJanela;
+		estilingue.TranslationX=-LarguraJanela;
+		estilingue.TranslationY=-LarguraJanela;
+		estilinguein.TranslationX=-LarguraJanela;
+		estilinguein.TranslationY=-LarguraJanela;
 		Passaro.TranslationY = 0;
 		Passaro.TranslationX = 0;
 		GerenciaCanos();
@@ -130,25 +130,18 @@ public partial class MainPage : ContentPage
 	{
 		if(! estaMorto)
 		{
-			if(VerificaColisaoTeto() ||
-				VerificaColisaoChao()||
-				VerificaColisaoCanoCima() ||
-				VerificaColisaoCanoBaixo())
-		
-		{
-			return true;
-		}
+			return VerificaColisaoTeto() || VerificaColisaoChao()|| VerificaColisaoestiligue() || VerificaColisaoEstilinguein();
 		}
 		return false;
 	}
 
-	bool VerificaColisaoCanoCima()
+	bool VerificaColisaoestiligue()
 	{
-		var posHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
-		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
-		if (posHPassaro >=Math.Abs(imgCanoCima.TranslationX)-imgCanoCima.WidthRequest&&
-			posHPassaro<=Math.Abs(imgCanoCima.TranslationX)+imgCanoCima.WidthRequest&&
-			posVPassaro<=imgCanoCima.HeightRequest+Passaro.TranslationY)
+		var posHpassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
+		var posVpassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
+		if (posHpassaro >=Math.Abs(estilingue..TranslationX)-estilingue..WidthRequest&&
+			posHpassaro<=Math.Abs(estilingue..TranslationX)+estilingue..WidthRequest&&
+			posVpassaro<=estilingue..HeightRequest+Passaro.TranslationY)
 			{
 				return true;
 			}
@@ -157,13 +150,13 @@ public partial class MainPage : ContentPage
 				return false;
 			}
 	}
-	bool VerificaColisaoCanoBaixo()
+	bool VerificaColisaoEstilinguein()
 	{
-		var posHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
-		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
-		if (posHPassaro >=Math.Abs(imgCanoBaixo.TranslationX)-imgCanoBaixo.WidthRequest&&
-			posHPassaro<=Math.Abs(imgCanoBaixo.TranslationX)+imgCanoBaixo.WidthRequest&&
-			posVPassaro<=imgCanoBaixo.HeightRequest+Passaro.TranslationY)
+		var passaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
+		var passaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
+		if (passaro >=Math.Abs(estilinguein.TranslationX)-estilinguein.WidthRequest&&
+			passaro<=Math.Abs(estilinguein.TranslationX)+estilinguein.WidthRequest&&
+			passaro<=estilinguein.HeightRequest+Passaro.TranslationY)
 			{
 				return true;
 			}
