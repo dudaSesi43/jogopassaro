@@ -29,7 +29,7 @@ public partial class MainPage : ContentPage
 		if (VerificaColisao())
 		{
 			estaMorto=true;
-			GameOverFrame.IsVisible=true;
+			FrameGameOver.IsVisible=true;
 			break;
 		}
 		if (estaPulando)
@@ -41,7 +41,7 @@ public partial class MainPage : ContentPage
   }
 	void AplicaPulo()
 	{
-		passaro.TranslationY-=forcaPulo;
+		Passaro.TranslationY-=forcaPulo;
 		tempoPulando++;
 		if (tempoPulando >= maxTempoPulando)
 		{
@@ -55,7 +55,7 @@ public partial class MainPage : ContentPage
 	}
 	void AplicaGravidade()
 	{
-		passaro.TranslationY += Gravidade;
+		Passaro.TranslationY += Gravidade;
 	
 	}
 
@@ -89,7 +89,7 @@ public partial class MainPage : ContentPage
 
 	void OnGameOverCliked (object s, TappedEventArgs e)
 	{
-		GameOverFrame.IsVisible = false;
+		FrameGameOver.IsVisible = false;
 		estaMorto = false;
 		Inicializar();
 		Desenha();
@@ -137,11 +137,11 @@ public partial class MainPage : ContentPage
 
 	bool VerificaColisaoestiligue()
 	{
-		var posHpassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
-		var posVpassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
-		if (posHpassaro >=Math.Abs(estilingue..TranslationX)-estilingue..WidthRequest&&
-			posHpassaro<=Math.Abs(estilingue..TranslationX)+estilingue..WidthRequest&&
-			posVpassaro<=estilingue..HeightRequest+Passaro.TranslationY)
+		var posHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
+		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
+		if (posHPassaro >=Math.Abs(estilingue.TranslationX)-estilingue.WidthRequest&&
+			posHPassaro<=Math.Abs(estilingue.TranslationX)+estilingue.WidthRequest&&
+			posVPassaro<=estilingue.HeightRequest+Passaro.TranslationY)
 			{
 				return true;
 			}
@@ -152,11 +152,11 @@ public partial class MainPage : ContentPage
 	}
 	bool VerificaColisaoEstilinguein()
 	{
-		var passaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
-		var passaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
-		if (passaro >=Math.Abs(estilinguein.TranslationX)-estilinguein.WidthRequest&&
-			passaro<=Math.Abs(estilinguein.TranslationX)+estilinguein.WidthRequest&&
-			passaro<=estilinguein.HeightRequest+Passaro.TranslationY)
+		var PosHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
+		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
+		if (posHPassaro >=Math.Abs(estilinguein.TranslationX)-estilinguein.WidthRequest&&
+		    posHPassaro<=Math.Abs(estilinguein.TranslationX)+estilinguein.WidthRequest&&
+			posVPassaro<=estilinguein.HeightRequest+Passaro.TranslationY)
 			{
 				return true;
 			}
