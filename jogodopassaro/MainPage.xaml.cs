@@ -49,7 +49,7 @@ public partial class MainPage : ContentPage
 			tempoPulando=0;
 		}
 	}
-	void OnGridCliked(object sender, TappedEventArgs e)
+	void OnGridClicked(object sender, TappedEventArgs e)
 	{
 		estaPulando=true;
 	}
@@ -87,7 +87,7 @@ public partial class MainPage : ContentPage
 	}
 
 
-	void OnGameOverCliked (object s, TappedEventArgs e)
+	void OnGameOverClicked (object s, TappedEventArgs e)
 	{
 		FrameGameOver.IsVisible = false;
 		estaMorto = false;
@@ -152,7 +152,7 @@ public partial class MainPage : ContentPage
 	}
 	bool VerificaColisaoEstilinguein()
 	{
-		var PosHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
+		var posHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
 		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
 		if (posHPassaro >=Math.Abs(estilinguein.TranslationX)-estilinguein.WidthRequest&&
 		    posHPassaro<=Math.Abs(estilinguein.TranslationX)+estilinguein.WidthRequest&&

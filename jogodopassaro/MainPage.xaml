@@ -10,7 +10,7 @@
               </Grid.GestureRecognizers>
               <!-- Img fundo-->
 
-              <Image Source="fundo.png"
+              <Image Source="fundo.jpg"
                      Aspect="Fill"/>
 
               <!-- Img personagem-->
@@ -24,7 +24,7 @@
 
               <!-- Img postes-->
 
-              <Image Source="sbp1.png"
+              <Image Source="estilinguein.png"
                      VerticalOptions="Start"
                      HorizontalOptions="End"
                      HeightRequest="400"
@@ -32,7 +32,7 @@
 
               <!-- Img postes-->
 
-              <Image Source="sbp2.png"
+              <Image Source="estilingue.png"
                      VerticalOptions="End"
                      HorizontalOptions="End"
                      HeightRequest="400"
