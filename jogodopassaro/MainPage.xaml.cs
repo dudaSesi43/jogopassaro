@@ -4,16 +4,16 @@ namespace jogodopassaro;
 
 public partial class MainPage : ContentPage
 {
-	int score=0;
-	const int AberturaMinima=200;
-	const int forcaPulo=30;
-	const int maxTempoPulando=3;//frames
-	bool estaPulando=false;	
-	int tempoPulando=0;
-	const int TempoEntreFrames = 25;
-	const int Gravidade = 6;
-	double LarguraJanela;
-	double AlturaJanela;
+	int score = 0;
+	const int AberturaMinima = 20;
+	const int forcaPulo = 40;
+	const int maxTempoPulando = 3;//frames
+	bool estaPulando = false;
+	int tempoPulando = 0;
+	const int TempoEntreFrames = 50;
+	const int Gravidade = 5;
+	double LarguraJanela = 0;
+	double AlturaJanela = 0;
 	int velocidade = 10;
 	bool estaMorto = true;
 	public MainPage()
@@ -21,73 +21,79 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
-  public async void Desenha()
-  {
-	while (!estaMorto)
+	public async void Desenha()
 	{
-		GerenciaCanos();
-		if (VerificaColisao())
+		while (!estaMorto)
 		{
-			estaMorto=true;
-			FrameGameOver.IsVisible=true;
-			break;
+			GerenciaCanos();
+			if (VerificaColisao())
+			{
+				estaMorto = true;
+				FrameGameOver.IsVisible = true;
+				break;
+			}
+			else
+			{
+				AplicaGravidade();
+			}
+			if (estaPulando)
+				AplicaPulo();
+			else
+				AplicaGravidade();
+			await Task.Delay(TempoEntreFrames);
 		}
-		if (estaPulando)
-		  AplicaPulo();
-		else
-			AplicaGravidade();
-		await Task.Delay(TempoEntreFrames);
 	}
-  }
 	void AplicaPulo()
 	{
-		Passaro.TranslationY-=forcaPulo;
+		Passaro.TranslationY -= forcaPulo;
 		tempoPulando++;
 		if (tempoPulando >= maxTempoPulando)
 		{
-			estaPulando=false;
-			tempoPulando=0;
+			estaPulando = false;
+			tempoPulando = 0;
 		}
 	}
 	void OnGridClicked(object sender, TappedEventArgs e)
 	{
-		estaPulando=true;
+		estaPulando = true;
 	}
 	void AplicaGravidade()
 	{
 		Passaro.TranslationY += Gravidade;
-	
+
 	}
 
-	
+
 	protected override void OnSizeAllocated(double w, double h)
 	{
 		base.OnSizeAllocated(w, h);
 		LarguraJanela = w;
 		AlturaJanela = h;
-		
+
 	}
 	void GerenciaCanos()
 	{
 		estilingue.TranslationX -= velocidade;
-		estilingue.TranslationX -= velocidade;
+		estilinguein.TranslationX -= velocidade;
 
-		if (estilinguein.TranslationX <- LarguraJanela)
+		if (estilinguein.TranslationX <= -LarguraJanela)
 		{
-			estilingue.TranslationX = 0;
-			estilinguein.TranslationX = 0;
-			var alturaMax=-100;
-			var alturaMin=-estilinguein.HeightRequest;
-			estilingue.TranslationY=Random.Shared.Next((int)alturaMin, (int)alturaMax);
-			estilinguein.TranslationY=estilinguein.TranslationY+AberturaMinima+estilingue.HeightRequest;
+			estilingue.TranslationX = estilingue.WidthRequest;
+			estilinguein.TranslationX = estilingue.WidthRequest;
+
+			var alturaMax = -100;
+			var alturaMin = -estilinguein.HeightRequest;
+
+			estilingue.TranslationY = Random.Shared.Next((int)alturaMin, (int)alturaMax);
+			estilinguein.TranslationY = estilinguein.TranslationY + AberturaMinima + estilingue.HeightRequest;
 			score++;
-			LabelScore.Text="estilingue: "+score.ToString("D3");
+			LabelScore.Text = "estilingue: " + score.ToString("D3");
 		}
-	
+
 	}
 
 
-	void OnGameOverClicked (object s, TappedEventArgs e)
+	void OnGameOverClicked(object s, TappedEventArgs e)
 	{
 		FrameGameOver.IsVisible = false;
 		estaMorto = false;
@@ -96,76 +102,73 @@ public partial class MainPage : ContentPage
 	}
 	void Inicializar()
 	{
-		estilingue.TranslationX=-LarguraJanela;
-		estilingue.TranslationY=-LarguraJanela;
-		estilinguein.TranslationX=-LarguraJanela;
-		estilinguein.TranslationY=-LarguraJanela;
+		estilingue.TranslationX = -LarguraJanela;
+		estilinguein.TranslationX = -LarguraJanela;
 		Passaro.TranslationY = 0;
 		Passaro.TranslationX = 0;
 		GerenciaCanos();
 	}
 	bool VerificaColisaoTeto()
 	{
-		var minY=-AlturaJanela/2;
+		var minY = -AlturaJanela / 2;
 		if (Passaro.TranslationY <= minY)
-		
-		return true;
-		
+
+			return true;
+
 		else
-		
-		return false;
-		
-		
+
+			return false;
+
+
 	}
 	bool VerificaColisaoChao()
 	{
-		var maxY=AlturaJanela/2;
-		if(Passaro.TranslationY >= maxY)
-		return true;
-		else 
-		return false;
+		var maxY = AlturaJanela / 2;
+		if (Passaro.TranslationY >= maxY)
+			return true;
+		else
+			return false;
 	}
 
 	bool VerificaColisao()
 	{
-		if(! estaMorto)
+		if (!estaMorto)
 		{
-			return VerificaColisaoTeto() || VerificaColisaoChao()|| VerificaColisaoestiligue() || VerificaColisaoEstilinguein();
+			return VerificaColisaoTeto() || VerificaColisaoChao() || VerificaColisaoestiligue() || VerificaColisaoEstilinguein();
 		}
 		return false;
 	}
 
 	bool VerificaColisaoestiligue()
-	{
-		var posHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
-		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
-		if (posHPassaro >=Math.Abs(estilingue.TranslationX)-estilingue.WidthRequest&&
-			posHPassaro<=Math.Abs(estilingue.TranslationX)+estilingue.WidthRequest&&
-			posVPassaro<=estilingue.HeightRequest+Passaro.TranslationY)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-	}
+{
+    var posicaoHorizontalPardal = (LarguraJanela - 50) - (Passaro.WidthRequest / 2);
+    var posicaoVerticalPardal   = (AlturaJanela / 2) - (Passaro.HeightRequest / 2) + Passaro.TranslationY;
+
+    if (
+         posicaoHorizontalPardal >= Math.Abs(estilingue.TranslationX) - estilingue.WidthRequest &&
+         posicaoHorizontalPardal <= Math.Abs(estilingue.TranslationX) + estilingue.WidthRequest &&
+         posicaoVerticalPardal   <= estilingue.HeightRequest + estilingue.TranslationY
+       )
+      return true;
+    else
+      return false;
+  }
 	bool VerificaColisaoEstilinguein()
 	{
-		var posHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
-		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
-		if (posHPassaro >=Math.Abs(estilinguein.TranslationX)-estilinguein.WidthRequest&&
-		    posHPassaro<=Math.Abs(estilinguein.TranslationX)+estilinguein.WidthRequest&&
-			posVPassaro<=estilinguein.HeightRequest+Passaro.TranslationY)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+    var posicaoHorizontalPardal = LarguraJanela - 50 - Passaro.WidthRequest / 2;
+    var posicaoVerticalPardal   = (AlturaJanela / 2) + (Passaro.HeightRequest / 2) + Passaro.TranslationY;
 
-	}
+    var yMaxCano = estilingue.HeightRequest + estilingue.TranslationY + AberturaMinima;
+
+    if (
+         posicaoHorizontalPardal >= Math.Abs(estilingue.TranslationY) - estilingue.WidthRequest &&
+         posicaoHorizontalPardal <= Math.Abs(estilingue.TranslationY) + estilingue.WidthRequest &&
+         posicaoVerticalPardal   >= yMaxCano
+       )
+      return true;
+    else
+      return false;
+  }
 
 }
 

@@ -16,27 +16,32 @@
               <!-- Img personagem-->
 
               <Image Source="bird.png"
-                     HeightRequest="50"
-                     WidthRequest="50"
+                     HeightRequest="80"
+                     WidthRequest="80"
                      HorizontalOptions="Start"
-                     x:Name="Passaro"/>
+                     x:Name="Passaro"
+                     BackgroundColor="Pink"/>
 
 
               <!-- Img postes-->
 
               <Image Source="estilinguein.png"
-                     VerticalOptions="Start"
                      HorizontalOptions="End"
-                     HeightRequest="400"
-                     x:Name="estilingue"/>
+                     Aspect="Fill"
+                     HeightRequest="650"
+                     WidthRequest="150"
+                     x:Name="estilingue"
+                     BackgroundColor="Pink"/>
 
               <!-- Img postes-->
 
               <Image Source="estilingue.png"
-                     VerticalOptions="End"
                      HorizontalOptions="End"
-                     HeightRequest="400"
-                     x:Name="estilinguein"/>
+                     Aspect="Fill"
+                     HeightRequest="650"
+                     WidthRequest="150"
+                     x:Name="estilinguein"
+                     BackgroundColor="Pink"/>
 
               <!-- Img do chão-->
 
