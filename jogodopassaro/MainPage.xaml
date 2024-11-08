@@ -16,8 +16,8 @@
               <!-- Img personagem-->
 
               <Image Source="bird.png"
-                     HeightRequest="80"
-                     WidthRequest="80"
+                     HeightRequest="60"
+                     WidthRequest="65"
                      HorizontalOptions="Start"
                      x:Name="Passaro"
                      BackgroundColor="Pink"/>
@@ -47,7 +47,7 @@
 
               <Image Source="chao.png"
                      VerticalOptions="End"
-                     HeightRequest="100"
+                     HeightRequest="80"
                      Aspect="Fill"
                      x:Name="chao"/>
               <!-- Frame game over-->

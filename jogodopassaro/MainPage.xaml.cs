@@ -5,7 +5,7 @@ namespace jogodopassaro;
 public partial class MainPage : ContentPage
 {
 	int score = 0;
-	const int AberturaMinima = 20;
+	const int AberturaMinima = 200;
 	const int forcaPulo = 40;
 	const int maxTempoPulando = 3;//frames
 	bool estaPulando = false;
@@ -81,11 +81,11 @@ public partial class MainPage : ContentPage
 			estilingue.TranslationX = estilingue.WidthRequest;
 			estilinguein.TranslationX = estilingue.WidthRequest;
 
-			var alturaMax = -100;
+			var alturaMax = -150;
 			var alturaMin = -estilinguein.HeightRequest;
 
 			estilingue.TranslationY = Random.Shared.Next((int)alturaMin, (int)alturaMax);
-			estilinguein.TranslationY = estilinguein.TranslationY + AberturaMinima + estilingue.HeightRequest;
+			estilinguein.TranslationY = estilingue.TranslationY + AberturaMinima + estilingue.HeightRequest;
 			score++;
 			LabelScore.Text = "estilingue: " + score.ToString("D3");
 		}
@@ -145,7 +145,7 @@ public partial class MainPage : ContentPage
     var posicaoVerticalPardal   = (AlturaJanela / 2) - (Passaro.HeightRequest / 2) + Passaro.TranslationY;
 
     if (
-         posicaoHorizontalPardal >= Math.Abs(estilingue.TranslationX) - estilingue.WidthRequest &&
+         posicaoHorizontalPardal >= Math.Abs(estilingue.TranslationY) - estilingue.WidthRequest &&
          posicaoHorizontalPardal <= Math.Abs(estilingue.TranslationX) + estilingue.WidthRequest &&
          posicaoVerticalPardal   <= estilingue.HeightRequest + estilingue.TranslationY
        )
@@ -155,15 +155,15 @@ public partial class MainPage : ContentPage
   }
 	bool VerificaColisaoEstilinguein()
 	{
-    var posicaoHorizontalPardal = LarguraJanela - 50 - Passaro.WidthRequest / 2;
-    var posicaoVerticalPardal   = (AlturaJanela / 2) + (Passaro.HeightRequest / 2) + Passaro.TranslationY;
+    var posicaoHorizontalPassaro = LarguraJanela - 50 - Passaro.WidthRequest / 2;
+    var posicaoVerticalPassaro   = (AlturaJanela / 2) + (Passaro.HeightRequest / 2) + Passaro.TranslationY;
 
     var yMaxCano = estilingue.HeightRequest + estilingue.TranslationY + AberturaMinima;
 
     if (
-         posicaoHorizontalPardal >= Math.Abs(estilingue.TranslationY) - estilingue.WidthRequest &&
-         posicaoHorizontalPardal <= Math.Abs(estilingue.TranslationY) + estilingue.WidthRequest &&
-         posicaoVerticalPardal   >= yMaxCano
+         posicaoHorizontalPassaro >= Math.Abs(estilingue.TranslationY) - estilingue.WidthRequest &&
+         posicaoHorizontalPassaro<= Math.Abs(estilingue.TranslationX) + estilingue.WidthRequest &&
+         posicaoVerticalPassaro   >= yMaxCano
        )
       return true;
     else
