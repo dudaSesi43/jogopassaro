@@ -19,8 +19,7 @@
                      HeightRequest="60"
                      WidthRequest="65"
                      HorizontalOptions="Start"
-                     x:Name="Passaro"
-                     BackgroundColor="Pink"/>
+                     x:Name="Passaro"/>
 
 
               <!-- Img postes-->
@@ -30,8 +29,7 @@
                      Aspect="Fill"
                      HeightRequest="650"
                      WidthRequest="150"
-                     x:Name="estilingue"
-                     BackgroundColor="Pink"/>
+                     x:Name="estilingue"/>
 
               <!-- Img postes-->
 
@@ -40,8 +38,7 @@
                      Aspect="Fill"
                      HeightRequest="650"
                      WidthRequest="150"
-                     x:Name="estilinguein"
-                     BackgroundColor="Pink"/>
+                     x:Name="estilinguein"/>
 
               <!-- Img do chão-->
 

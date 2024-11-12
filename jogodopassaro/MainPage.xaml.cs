@@ -6,11 +6,11 @@ public partial class MainPage : ContentPage
 {
 	int score = 0;
 	const int AberturaMinima = 200;
-	const int forcaPulo = 40;
+	const int forcaPulo = 50;
 	const int maxTempoPulando = 3;//frames
 	bool estaPulando = false;
 	int tempoPulando = 0;
-	const int TempoEntreFrames = 50;
+	const int TempoEntreFrames = 40;
 	const int Gravidade = 5;
 	double LarguraJanela = 0;
 	double AlturaJanela = 0;
@@ -81,7 +81,7 @@ public partial class MainPage : ContentPage
 			estilingue.TranslationX = estilingue.WidthRequest;
 			estilinguein.TranslationX = estilingue.WidthRequest;
 
-			var alturaMax = -150;
+			var alturaMax = -300;
 			var alturaMin = -estilinguein.HeightRequest;
 
 			estilingue.TranslationY = Random.Shared.Next((int)alturaMin, (int)alturaMax);
